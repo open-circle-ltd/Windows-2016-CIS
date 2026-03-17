@@ -707,7 +707,7 @@
     name: SeSystemProfilePrivilege
     users:
       - S-1-5-32-544
-      - S-1-5-80-*
+      - NT SERVICE\WdiServiceHost
     action: set
 
 - name: "2.2.45 | PATCH | Ensure Replace a process level token is set to LOCAL SERVICE NETWORK SERVICE"
