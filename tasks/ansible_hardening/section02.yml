@@ -13,7 +13,7 @@
     users: []
     action: set
 
-- name: "2.2.2 | PATCH | Ensure Access this computer from the network is set to Administrators, Authenticated Users, & ENTERPRISE DOMAIN CONTROLLERS DC only | Domain Controller"
+- name: "2.2.2 | PATCH | Ensure Access this computer from the network is set to S-1-5-32-544, Authenticated Users, & ENTERPRISE DOMAIN CONTROLLERS DC only | Domain Controller"
   when:
     - win16cis_rule_2_2_2
     - prelim_win16cis_is_domain_controller
@@ -25,12 +25,12 @@
   ansible.windows.win_user_right:
     name: SeNetworkLogonRight
     users:
-      - Administrators
-      - Authenticated Users
+      - S-1-5-32-544
+      - S-1-5-11
       - ENTERPRISE DOMAIN CONTROLLERS
     action: set
 
-- name: "2.2.3 | PATCH | Ensure Access this computer from the network is set to Administrators, Authenticated Users, & ENTERPRISE DOMAIN CONTROLLERS MS only | Member Server"
+- name: "2.2.3 | PATCH | Ensure Access this computer from the network is set to S-1-5-32-544, Authenticated Users, & ENTERPRISE DOMAIN CONTROLLERS MS only | Member Server"
   when:
     - win16cis_rule_2_2_3
     - prelim_win16cis_is_domain_member
@@ -42,8 +42,8 @@
   ansible.windows.win_user_right:
     name: SeNetworkLogonRight
     users:
-      - Administrators
-      - Authenticated Users
+      - S-1-5-32-544
+      - S-1-5-11
     action: set
 
 - name: "2.2.4 | PATCH | Ensure Act as part of the operating system is set to No One"
@@ -59,7 +59,7 @@
     users: []
     action: set
 
-- name: "2.2.5 | PATCH | Ensure Add workstations to domain is set to Administrators DC only | Domain Controller"
+- name: "2.2.5 | PATCH | Ensure Add workstations to domain is set to S-1-5-32-544 DC only | Domain Controller"
   when:
     - win16cis_rule_2_2_5
     - prelim_win16cis_is_domain_controller
@@ -70,10 +70,10 @@
     - userrights
   ansible.windows.win_user_right:
     name: SeMachineAccountPrivilege
-    users: Administrators
+    users: S-1-5-32-544
     action: set
 
-- name: "2.2.6 | PATCH | Ensure Adjust memory quotas for a process is set to Administrators LOCAL SERVICE NETWORK SERVICE"
+- name: "2.2.6 | PATCH | Ensure Adjust memory quotas for a process is set to S-1-5-32-544 LOCAL SERVICE NETWORK SERVICE"
   when: win16cis_rule_2_2_6
   tags:
     - level1-domaincontroller
@@ -84,12 +84,12 @@
   ansible.windows.win_user_right:
     name: SeIncreaseQuotaPrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
       - LOCAL SERVICE
       - NETWORK SERVICE
     action: set
 
-- name: "2.2.7 | PATCH |  Ensure Allow log on locally is set to Administrators, ENTERPRISE DOMAIN CONTROLLERS (DC only)"
+- name: "2.2.7 | PATCH |  Ensure Allow log on locally is set to S-1-5-32-544, ENTERPRISE DOMAIN CONTROLLERS (DC only)"
   when:
     - win16cis_rule_2_2_7
     - prelim_win16cis_is_domain_controller
@@ -101,11 +101,11 @@
   ansible.windows.win_user_right:
     name: SeInteractiveLogonRight
     users:
-      - Administrators
+      - S-1-5-32-544
       - ENTERPRISE DOMAIN CONTROLLERS
     action: set
 
-- name: "2.2.8 | PATCH |  Ensure Allow log on locally is set to Administrators (MS only)"
+- name: "2.2.8 | PATCH |  Ensure Allow log on locally is set to S-1-5-32-544 (MS only)"
   when:
     - win16cis_rule_2_2_8
     - prelim_win16cis_is_domain_member
@@ -117,10 +117,10 @@
   ansible.windows.win_user_right:
     name: SeInteractiveLogonRight
     users:
-      - Administrators
+      - S-1-5-32-544
     action: set
 
-- name: "2.2.9 | PATCH | Ensure 'Allow log on through Remote Desktop Services' is set to 'Administrators' (DC only)"
+- name: "2.2.9 | PATCH | Ensure 'Allow log on through Remote Desktop Services' is set to 'S-1-5-32-544' (DC only)"
   when:
     - win16cis_rule_2_2_9
     - prelim_win16cis_is_domain_controller
@@ -133,10 +133,10 @@
   ansible.windows.win_user_right:
     name: SeRemoteInteractiveLogonRight
     users:
-      - Administrators
+      - S-1-5-32-544
     action: set
 
-- name: "2.2.10 | PATCH | Ensure 'Allow log on through Remote Desktop Services' is set to 'Administrators, Remote Desktop Users' (MS Only)"
+- name: "2.2.10 | PATCH | Ensure 'Allow log on through Remote Desktop Services' is set to 'S-1-5-32-544, S-1-5-32-555' (MS Only)"
   when:
     - win16cis_rule_2_2_10
     - prelim_win16cis_is_domain_member
@@ -149,11 +149,11 @@
   ansible.windows.win_user_right:
     name: SeRemoteInteractiveLogonRight
     users:
-      - Administrators
-      - Remote Desktop Users
+      - S-1-5-32-544
+      - S-1-5-32-555
     action: set
 
-- name: "2.2.11 | PATCH | Ensure Back up files and directories is set to Administrators"
+- name: "2.2.11 | PATCH | Ensure Back up files and directories is set to S-1-5-32-544"
   when:
     - win16cis_rule_2_2_11
     - prelim_win16cis_is_domain_member
@@ -166,10 +166,10 @@
   ansible.windows.win_user_right:
     name: SeBackupPrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
     action: set
 
-- name: "2.2.12 | PATCH | Ensure Change the system time is set to Administrators LOCAL SERVICE"
+- name: "2.2.12 | PATCH | Ensure Change the system time is set to S-1-5-32-544 LOCAL SERVICE"
   when: win16cis_rule_2_2_12
   tags:
     - level1-domaincontroller
@@ -179,11 +179,11 @@
   ansible.windows.win_user_right:
     name: SeSystemTimePrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
       - LOCAL SERVICE
     action: set
 
-- name: "2.2.13 | PATCH | Ensure Change the time zone is set to Administrators LOCAL SERVICE"
+- name: "2.2.13 | PATCH | Ensure Change the time zone is set to S-1-5-32-544 LOCAL SERVICE"
   when: win16cis_rule_2_2_13
   tags:
     - level1-domaincontroller
@@ -194,11 +194,11 @@
   ansible.windows.win_user_right:
     name: SeTimeZonePrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
       - LOCAL SERVICE
     action: set
 
-- name: "2.2.14 | PATCH | Ensure Create a pagefile is set to Administrators"
+- name: "2.2.14 | PATCH | Ensure Create a pagefile is set to S-1-5-32-544"
   when: win16cis_rule_2_2_14
   tags:
     - level1-domaincontroller
@@ -209,7 +209,7 @@
   ansible.windows.win_user_right:
     name: SeCreatePagefilePrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
     action: set
 
 - name: "2.2.15 | PATCH | Ensure Create a token object is set to No One"
@@ -225,7 +225,7 @@
     users: []
     action: set
 
-- name: "2.2.16 | PATCH | Ensure Create global objects is set to Administrators LOCAL SERVICE NETWORK SERVICE SERVICE"
+- name: "2.2.16 | PATCH | Ensure Create global objects is set to S-1-5-32-544 LOCAL SERVICE NETWORK SERVICE SERVICE"
   when: win16cis_rule_2_2_16
   tags:
     - level1-domaincontroller
@@ -236,7 +236,7 @@
   ansible.windows.win_user_right:
     name: SeCreateGlobalPrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
       - LOCAL SERVICE
       - NETWORK SERVICE
       - SERVICE
@@ -255,7 +255,7 @@
     users: []
     action: set
 
-- name: "2.2.18 | PATCH | Ensure Create symbolic links is set to Administrators DC only | Domain Controller"
+- name: "2.2.18 | PATCH | Ensure Create symbolic links is set to S-1-5-32-544 DC only | Domain Controller"
   when:
     - win16cis_rule_2_2_18
     - prelim_win16cis_is_domain_controller
@@ -267,10 +267,10 @@
   ansible.windows.win_user_right:
     name: SeCreateSymbolicLinkPrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
     action: set
 
-- name: "2.2.19 | PATCH | Ensure Create symbolic links is set to Administrators NT VIRTUAL MACHINE-Virtual Machines MS only | Member Server"
+- name: "2.2.19 | PATCH | Ensure Create symbolic links is set to S-1-5-32-544 NT VIRTUAL MACHINE-Virtual Machines MS only | Member Server"
   when:
     - win16cis_rule_2_2_19
     - prelim_win16cis_is_domain_member
@@ -280,24 +280,24 @@
     - patch
     - userrights
   block:
-    - name: "2.2.19 | PATCH | Ensure Create symbolic links is set to Administrators NT VIRTUAL MACHINE-Virtual Machines  |  Without Hyper-v | Member Server"
+    - name: "2.2.19 | PATCH | Ensure Create symbolic links is set to S-1-5-32-544 NT VIRTUAL MACHINE-Virtual Machines  |  Without Hyper-v | Member Server"
       when: not win16cis_hyperv_installed
       ansible.windows.win_user_right:
         name: SeCreateSymbolicLinkPrivilege
         users:
-          - Administrators
+          - S-1-5-32-544
         action: set
 
-    - name: "2.2.19 | PATCH | Ensure Create symbolic links is set to Administrators NT VIRTUAL MACHINE-Virtual Machines MS only | With Hyper-v | Member Server"
+    - name: "2.2.19 | PATCH | Ensure Create symbolic links is set to S-1-5-32-544 NT VIRTUAL MACHINE-Virtual Machines MS only | With Hyper-v | Member Server"
       when: win16cis_hyperv_installed
       ansible.windows.win_user_right:
         name: SeCreateSymbolicLinkPrivilege
         users:
-          - Administrators
+          - S-1-5-32-544
           - NT VIRTUAL MACHINE\Virtual Machines
         action: set
 
-- name: "2.2.20 | PATCH | Ensure Debug programs is set to Administrators"
+- name: "2.2.20 | PATCH | Ensure Debug programs is set to S-1-5-32-544"
   when: win16cis_rule_2_2_20
   tags:
     - level1-domaincontroller
@@ -308,7 +308,7 @@
   ansible.windows.win_user_right:
     name: SeDebugPrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
     action: set
 
 - name: "2.2.21 | PATCH | Ensure Deny access to this computer from the network to include Guests DC only | Domain Controller"
@@ -327,7 +327,7 @@
       - Guests
     action: add
 
-- name: "2.2.22 | PATCH | Ensure Deny access to this computer from the network to include Guests Local account and member of Administrators group MS only | Member Server"
+- name: "2.2.22 | PATCH | Ensure Deny access to this computer from the network to include Guests Local account and member of S-1-5-32-544 group MS only | Member Server"
   when:
     - win16cis_rule_2_2_22
     - prelim_win16cis_is_domain_member
@@ -341,7 +341,7 @@
     users:
       - Guests
       - Local Account
-      - Administrators
+      - S-1-5-32-544
     action: add
 
 - name: "2.2.23 | PATCH | Ensure Deny log on as a batch job to include Guests"
@@ -419,7 +419,7 @@
       - Local Account
     action: set
 
-- name: "2.2.28 | PATCH | Ensure Enable computer and user accounts to be trusted for delegation is set to Administrators DC only | Domain Controller"
+- name: "2.2.28 | PATCH | Ensure Enable computer and user accounts to be trusted for delegation is set to S-1-5-32-544 DC only | Domain Controller"
   when:
     - win16cis_rule_2_2_28
     - prelim_win16cis_is_domain_controller
@@ -428,10 +428,10 @@
     - rule_2.2.28
     - patch
     - userrights
-    - administrators
+    - S-1-5-32-544
   ansible.windows.win_user_right:
     name: SeEnableDelegationPrivilege
-    users: Administrators
+    users: S-1-5-32-544
     action: set
 
 - name: "2.2.29 | PATCH | Ensure Enable computer and user accounts to be trusted for delegation is set to No One MS only | Member Server"
@@ -448,7 +448,7 @@
     users: []
     action: set
 
-- name: "2.2.30 | PATCH | Ensure Force shutdown from a remote system is set to Administrators"
+- name: "2.2.30 | PATCH | Ensure Force shutdown from a remote system is set to S-1-5-32-544"
   when: win16cis_rule_2_2_30
   tags:
     - level1-domaincontroller
@@ -456,11 +456,11 @@
     - rule_2.2.30
     - patch
     - userrights
-    - administrators
+    - S-1-5-32-544
   ansible.windows.win_user_right:
     name: SeRemoteShutdownPrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
     action: set
 
 - name: "2.2.31 | PATCH | Ensure Generate security audits is set to LOCAL SERVICE, NETWORK SERVICE"
@@ -479,7 +479,7 @@
       - NETWORK SERVICE
     action: set
 
-- name: "2.2.32 | PATCH | Ensure Impersonate a client after authentication is set to Administrators LOCAL SERVICE NETWORK SERVICE SERVICE DC only | Domain Controller"
+- name: "2.2.32 | PATCH | Ensure Impersonate a client after authentication is set to S-1-5-32-544 LOCAL SERVICE NETWORK SERVICE SERVICE DC only | Domain Controller"
   when:
     - win16cis_rule_2_2_32
     - prelim_win16cis_is_domain_controller
@@ -489,17 +489,17 @@
     - patch
     - userrights
     - services
-    - administrators
+    - S-1-5-32-544
   ansible.windows.win_user_right:
     name: SeImpersonatePrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
       - LOCAL SERVICE
       - NETWORK SERVICE
       - SERVICE
     action: set
 
-- name: "2.2.33 | PATCH | Ensure Impersonate a client after authentication is set to Administrators LOCAL SERVICE, NETWORK SERVICE, SERVICE and when the Web Server IIS Role with Web Services Role Service is installed IIS IUSRS MS only"
+- name: "2.2.33 | PATCH | Ensure Impersonate a client after authentication is set to S-1-5-32-544 LOCAL SERVICE, NETWORK SERVICE, SERVICE and when the Web Server IIS Role with Web Services Role Service is installed IIS IUSRS MS only"
   when:
     - win16cis_rule_2_2_33
     - prelim_win16cis_is_domain_member
@@ -508,33 +508,33 @@
     - rule_2.2.33
     - patch
     - userrights
-    - administrators
+    - S-1-5-32-544
     - services
   block:
-    - name: "2.2.33 | PATCH | Ensure Impersonate a client after authentication is set to Administrators LOCAL SERVICE, NETWORK SERVICE, SERVICE and when the Web Server IIS Role with Web Services Role Service is installed IIS IUSRS MS only"
+    - name: "2.2.33 | PATCH | Ensure Impersonate a client after authentication is set to S-1-5-32-544 LOCAL SERVICE, NETWORK SERVICE, SERVICE and when the Web Server IIS Role with Web Services Role Service is installed IIS IUSRS MS only"
       when: not win16cis_iis_and_web_services_installed
       ansible.windows.win_user_right:
         name: SeImpersonatePrivilege
         users:
-          - Administrators
+          - S-1-5-32-544
           - LOCAL SERVICE
           - NETWORK SERVICE
           - SERVICE
         action: set
 
-    - name: "2.2.33 | PATCH | Ensure Impersonate a client after authentication is set to Administrators LOCAL SERVICE, NETWORK SERVICE, SERVICE and when the Web Server IIS Role with Web Services Role Service is installed IIS IUSRS MS only"
+    - name: "2.2.33 | PATCH | Ensure Impersonate a client after authentication is set to S-1-5-32-544 LOCAL SERVICE, NETWORK SERVICE, SERVICE and when the Web Server IIS Role with Web Services Role Service is installed IIS IUSRS MS only"
       when: win16cis_iis_and_web_services_installed
       ansible.windows.win_user_right:
         name: SeImpersonatePrivilege
         users:
-          - Administrators
+          - S-1-5-32-544
           - IIS_IUSRS
           - LOCAL SERVICE
           - NETWORK SERVICE
           - SERVICE
         action: set
 
-- name: "2.2.34 | PATCH | Ensure Increase scheduling priority is set to Administrators Window ManagerWindow Manager Group"
+- name: "2.2.34 | PATCH | Ensure Increase scheduling priority is set to S-1-5-32-544 Window ManagerWindow Manager Group"
   when: win16cis_rule_2_2_34
   tags:
     - level1-domaincontroller
@@ -547,7 +547,7 @@
     users: "{{ win16cis_increase_scheduling_priority_users }}"
     action: set
 
-- name: "2.2.35 | PATCH | Ensure Load and unload device drivers is set to Administrators"
+- name: "2.2.35 | PATCH | Ensure Load and unload device drivers is set to S-1-5-32-544"
   when: win16cis_rule_2_2_35
   tags:
     - level1-domaincontroller
@@ -558,7 +558,7 @@
   ansible.windows.win_user_right:
     name: SeLoadDriverPrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
     action: set
 
 - name: "2.2.36 | PATCH | Ensure Lock pages in memory is set to No One"
@@ -574,7 +574,7 @@
     users: []
     action: set
 
-- name: "2.2.37 | PATCH | Ensure Log on as a batch job is set to Administrators DC Only | Domain Controller"
+- name: "2.2.37 | PATCH | Ensure Log on as a batch job is set to S-1-5-32-544 DC Only | Domain Controller"
   when:
     - win16cis_rule_2_2_37
     - prelim_win16cis_is_domain_controller
@@ -583,13 +583,13 @@
     - rule_2.2.37
     - patch
     - userrights
-    - administrators
+    - S-1-5-32-544
   ansible.windows.win_user_right:
     name: SeBatchLogonRight
-    users: Administrators
+    users: S-1-5-32-544
     action: set
 
-- name: "2.2.38 | PATCH | Ensure Manage auditing and security log is set to Administrators and when Exchange is running in the environment Exchange Servers DC only | Domain Controller"
+- name: "2.2.38 | PATCH | Ensure Manage auditing and security log is set to S-1-5-32-544 and when Exchange is running in the environment Exchange Servers DC only | Domain Controller"
   when:
     - win16cis_rule_2_2_38
     - prelim_win16cis_is_domain_controller
@@ -598,26 +598,26 @@
     - rule_2.2.38
     - patch
     - userrights
-    - administrators
+    - S-1-5-32-544
   block:
-    - name: "2.2.38 | PATCH | Ensure Manage auditing and security log is set to Administrators and when Exchange is running in the environment Exchange Servers DC only | Set Non-Exchange Server Groups | Domain Controller"
+    - name: "2.2.38 | PATCH | Ensure Manage auditing and security log is set to S-1-5-32-544 and when Exchange is running in the environment Exchange Servers DC only | Set Non-Exchange Server Groups | Domain Controller"
       when: not win16cis_exchange_server_running
       ansible.windows.win_user_right:
         name: SeSecurityPrivilege
         users:
-          - Administrators
+          - S-1-5-32-544
         action: set
 
-    - name: "2.2.38 | PATCH | Ensure Manage auditing and security log is set to Administrators and when Exchange is running in the environment Exchange Servers DC only | Set Exchange Server Groups | Domain Controller"
+    - name: "2.2.38 | PATCH | Ensure Manage auditing and security log is set to S-1-5-32-544 and when Exchange is running in the environment Exchange Servers DC only | Set Exchange Server Groups | Domain Controller"
       when: win16cis_exchange_server_running
       ansible.windows.win_user_right:
         name: SeSecurityPrivilege
         users:
-          - Administrators
+          - S-1-5-32-544
           - Exchange Servers
         action: set
 
-- name: "2.2.39 | PATCH | Ensure 'Manage auditing and security log' is set to 'Administrators' (MS only) | Member Server"
+- name: "2.2.39 | PATCH | Ensure 'Manage auditing and security log' is set to 'S-1-5-32-544' (MS only) | Member Server"
   when:
     - win16cis_rule_2_2_39
     - prelim_win16cis_is_domain_member
@@ -626,11 +626,11 @@
     - rule_2.2.39
     - patch
     - userrights
-    - administrators
+    - S-1-5-32-544
   ansible.windows.win_user_right:
     name: SeSecurityPrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
     action: set
 
 - name: "2.2.40 | PATCH | Ensure Modify an object label is set to No One"
@@ -646,7 +646,7 @@
     users: []
     action: set
 
-- name: "2.2.41 | PATCH | Ensure Modify firmware environment values is set to Administrators"
+- name: "2.2.41 | PATCH | Ensure Modify firmware environment values is set to S-1-5-32-544"
   when: win16cis_rule_2_2_41
   tags:
     - level1-domaincontroller
@@ -654,14 +654,14 @@
     - rule_2.2.41
     - patch
     - userrights
-    - administrators
+    - S-1-5-32-544
   ansible.windows.win_user_right:
     name: SeSystemEnvironmentPrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
     action: set
 
-- name: "2.2.42 | PATCH | Ensure Perform volume maintenance tasks is set to Administrators"
+- name: "2.2.42 | PATCH | Ensure Perform volume maintenance tasks is set to S-1-5-32-544"
   when: win16cis_rule_2_2_42
   tags:
     - level1-domaincontroller
@@ -669,14 +669,14 @@
     - rule_2.2.42
     - patch
     - userrights
-    - administrators
+    - S-1-5-32-544
   ansible.windows.win_user_right:
     name: SeManageVolumePrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
     action: set
 
-- name: "2.2.43 | PATCH | Ensure Profile single process is set to Administrators"
+- name: "2.2.43 | PATCH | Ensure Profile single process is set to S-1-5-32-544"
   when: win16cis_rule_2_2_43
   tags:
     - level1-domaincontroller
@@ -684,14 +684,14 @@
     - rule_2.2.43
     - patch
     - userrights
-    - administrators
+    - S-1-5-32-544
   ansible.windows.win_user_right:
     name: SeProfileSingleProcessPrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
     action: set
 
-- name: "2.2.44 | PATCH | Ensure Profile system performance is set to Administrators NT SERVICE.WdiServiceHost"
+- name: "2.2.44 | PATCH | Ensure Profile system performance is set to S-1-5-32-544 NT SERVICE.WdiServiceHost"
   when: win16cis_rule_2_2_44
   tags:
     - level1-domaincontroller
@@ -704,7 +704,7 @@
   ansible.windows.win_user_right:
     name: SeSystemProfilePrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
       - NT SERVICE\WdiServiceHost
     action: set
 
@@ -724,7 +724,7 @@
       - NETWORK SERVICE
     action: set
 
-- name: "2.2.46 | PATCH | Ensure Restore files and directories is set to Administrators"
+- name: "2.2.46 | PATCH | Ensure Restore files and directories is set to S-1-5-32-544"
   when: win16cis_rule_2_2_46
   tags:
     - level1-domaincontroller
@@ -736,10 +736,10 @@
   ansible.windows.win_user_right:
     name: SeRestorePrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
     action: set
 
-- name: "2.2.47 | PATCH | Ensure Shut down the system is set to Administrators"
+- name: "2.2.47 | PATCH | Ensure Shut down the system is set to S-1-5-32-544"
   when: win16cis_rule_2_2_47
   tags:
     - level1-domaincontroller
@@ -751,7 +751,7 @@
   ansible.windows.win_user_right:
     name: SeShutdownPrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
     action: set
 
 - name: "2.2.48 | PATCH | Ensure Synchronize directory service data is set to No One DC only | Domain Controller"
@@ -768,7 +768,7 @@
     users: []
     action: set
 
-- name: "2.2.49 | PATCH | Ensure Take ownership of files or other objects is set to Administrators"
+- name: "2.2.49 | PATCH | Ensure Take ownership of files or other objects is set to S-1-5-32-544"
   when: win16cis_rule_2_2_49
   tags:
     - level1-domaincontroller
@@ -780,7 +780,7 @@
   ansible.windows.win_user_right:
     name: SeTakeOwnershipPrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
     action: set
 
 - name: "2.3.1.1 | PATCH | Ensure Accounts Block Microsoft accounts is set to Users can not add or log on with Microsoft accounts"
@@ -1681,7 +1681,7 @@
     data: 1
     type: dword
 
-- name: "2.3.10.11 | PATCH | Ensure Network access Restrict clients allowed to make remote calls to SAM is set to Administrators Remote Access Allow MS only | Member Server"
+- name: "2.3.10.11 | PATCH | Ensure Network access Restrict clients allowed to make remote calls to SAM is set to S-1-5-32-544 Remote Access Allow MS only | Member Server"
   when:
     - win16cis_rule_2_3_10_11
     - prelim_win16cis_is_domain_member
@@ -1996,7 +1996,7 @@
     data: 1
     type: dword
 
-- name: "2.3.17.2 | PATCH | Ensure User Account Control Behavior of the elevation prompt for administrators in Admin Approval Mode is set to Prompt for consent on the secure desktop"
+- name: "2.3.17.2 | PATCH | Ensure User Account Control Behavior of the elevation prompt for S-1-5-32-544 in Admin Approval Mode is set to Prompt for consent on the secure desktop"
   when: win16cis_rule_2_3_17_2
   tags:
     - level1-domaincontroller
@@ -2052,7 +2052,7 @@
     data: 1
     type: dword
 
-- name: "2.3.17.6 | PATCH | Ensure User Account Control Run all administrators in Admin Approval Mode is set to Enabled"
+- name: "2.3.17.6 | PATCH | Ensure User Account Control Run all S-1-5-32-544 in Admin Approval Mode is set to Enabled"
   when: win16cis_rule_2_3_17_6
   tags:
     - level1-domaincontroller
