@@ -13,7 +13,7 @@
     users: []
     action: set
 
-- name: "2.2.2 | PATCH | Ensure Access this computer from the network is set to S-1-5-32-544, Authenticated Users, & ENTERPRISE DOMAIN CONTROLLERS DC only | Domain Controller"
+- name: "2.2.2 | PATCH | Ensure Access this computer from the network is set to S-1-5-32-544, Authenticated Users, & S-1-5-9 DC only | Domain Controller"
   when:
     - win16cis_rule_2_2_2
     - prelim_win16cis_is_domain_controller
@@ -27,10 +27,10 @@
     users:
       - S-1-5-32-544
       - S-1-5-11
-      - ENTERPRISE DOMAIN CONTROLLERS
+      - S-1-5-9
     action: set
 
-- name: "2.2.3 | PATCH | Ensure Access this computer from the network is set to S-1-5-32-544, Authenticated Users, & ENTERPRISE DOMAIN CONTROLLERS MS only | Member Server"
+- name: "2.2.3 | PATCH | Ensure Access this computer from the network is set to S-1-5-32-544, Authenticated Users, & S-1-5-9 MS only | Member Server"
   when:
     - win16cis_rule_2_2_3
     - prelim_win16cis_is_domain_member
@@ -73,7 +73,7 @@
     users: S-1-5-32-544
     action: set
 
-- name: "2.2.6 | PATCH | Ensure Adjust memory quotas for a process is set to S-1-5-32-544 LOCAL SERVICE NETWORK SERVICE"
+- name: "2.2.6 | PATCH | Ensure Adjust memory quotas for a process is set to S-1-5-32-544 S-1-5-19 S-1-5-20"
   when: win16cis_rule_2_2_6
   tags:
     - level1-domaincontroller
@@ -85,11 +85,11 @@
     name: SeIncreaseQuotaPrivilege
     users:
       - S-1-5-32-544
-      - LOCAL SERVICE
-      - NETWORK SERVICE
+      - S-1-5-19
+      - S-1-5-20
     action: set
 
-- name: "2.2.7 | PATCH |  Ensure Allow log on locally is set to S-1-5-32-544, ENTERPRISE DOMAIN CONTROLLERS (DC only)"
+- name: "2.2.7 | PATCH |  Ensure Allow log on locally is set to S-1-5-32-544, S-1-5-9 (DC only)"
   when:
     - win16cis_rule_2_2_7
     - prelim_win16cis_is_domain_controller
@@ -102,7 +102,7 @@
     name: SeInteractiveLogonRight
     users:
       - S-1-5-32-544
-      - ENTERPRISE DOMAIN CONTROLLERS
+      - S-1-5-9
     action: set
 
 - name: "2.2.8 | PATCH |  Ensure Allow log on locally is set to S-1-5-32-544 (MS only)"
@@ -120,7 +120,7 @@
       - S-1-5-32-544
     action: set
 
-- name: "2.2.9 | PATCH | Ensure 'Allow log on through Remote Desktop Services' is set to 'S-1-5-32-544' (DC only)"
+- name: "2.2.9 | PATCH | Ensure 'Allow log on through Remote Desktop S-1-5-6s' is set to 'S-1-5-32-544' (DC only)"
   when:
     - win16cis_rule_2_2_9
     - prelim_win16cis_is_domain_controller
@@ -136,7 +136,7 @@
       - S-1-5-32-544
     action: set
 
-- name: "2.2.10 | PATCH | Ensure 'Allow log on through Remote Desktop Services' is set to 'S-1-5-32-544, S-1-5-32-555' (MS Only)"
+- name: "2.2.10 | PATCH | Ensure 'Allow log on through Remote Desktop S-1-5-6s' is set to 'S-1-5-32-544, S-1-5-32-555' (MS Only)"
   when:
     - win16cis_rule_2_2_10
     - prelim_win16cis_is_domain_member
@@ -169,7 +169,7 @@
       - S-1-5-32-544
     action: set
 
-- name: "2.2.12 | PATCH | Ensure Change the system time is set to S-1-5-32-544 LOCAL SERVICE"
+- name: "2.2.12 | PATCH | Ensure Change the system time is set to S-1-5-32-544 S-1-5-19"
   when: win16cis_rule_2_2_12
   tags:
     - level1-domaincontroller
@@ -180,10 +180,10 @@
     name: SeSystemTimePrivilege
     users:
       - S-1-5-32-544
-      - LOCAL SERVICE
+      - S-1-5-19
     action: set
 
-- name: "2.2.13 | PATCH | Ensure Change the time zone is set to S-1-5-32-544 LOCAL SERVICE"
+- name: "2.2.13 | PATCH | Ensure Change the time zone is set to S-1-5-32-544 S-1-5-19"
   when: win16cis_rule_2_2_13
   tags:
     - level1-domaincontroller
@@ -195,7 +195,7 @@
     name: SeTimeZonePrivilege
     users:
       - S-1-5-32-544
-      - LOCAL SERVICE
+      - S-1-5-19
     action: set
 
 - name: "2.2.14 | PATCH | Ensure Create a pagefile is set to S-1-5-32-544"
@@ -225,7 +225,7 @@
     users: []
     action: set
 
-- name: "2.2.16 | PATCH | Ensure Create global objects is set to S-1-5-32-544 LOCAL SERVICE NETWORK SERVICE SERVICE"
+- name: "2.2.16 | PATCH | Ensure Create global objects is set to S-1-5-32-544 S-1-5-19 S-1-5-20 S-1-5-6"
   when: win16cis_rule_2_2_16
   tags:
     - level1-domaincontroller
@@ -237,9 +237,9 @@
     name: SeCreateGlobalPrivilege
     users:
       - S-1-5-32-544
-      - LOCAL SERVICE
-      - NETWORK SERVICE
-      - SERVICE
+      - S-1-5-19
+      - S-1-5-20
+      - S-1-5-6
     action: set
 
 - name: "2.2.17 | PATCH | Ensure Create permanent shared objects is set to No One"
@@ -294,7 +294,7 @@
         name: SeCreateSymbolicLinkPrivilege
         users:
           - S-1-5-32-544
-          - NT VIRTUAL MACHINE\Virtual Machines
+          - S-1-5-83-0
         action: set
 
 - name: "2.2.20 | PATCH | Ensure Debug programs is set to S-1-5-32-544"
@@ -311,7 +311,7 @@
       - S-1-5-32-544
     action: set
 
-- name: "2.2.21 | PATCH | Ensure Deny access to this computer from the network to include Guests DC only | Domain Controller"
+- name: "2.2.21 | PATCH | Ensure Deny access to this computer from the network to include S-1-5-32-546 DC only | Domain Controller"
   when:
     - win16cis_rule_2_2_21
     - prelim_win16cis_is_domain_controller
@@ -324,10 +324,10 @@
   ansible.windows.win_user_right:
     name: SeDenyNetworkLogonRight
     users:
-      - Guests
+      - S-1-5-32-546
     action: add
 
-- name: "2.2.22 | PATCH | Ensure Deny access to this computer from the network to include Guests Local account and member of S-1-5-32-544 group MS only | Member Server"
+- name: "2.2.22 | PATCH | Ensure Deny access to this computer from the network to include S-1-5-32-546 S-1-5-113 and member of S-1-5-32-544 group MS only | Member Server"
   when:
     - win16cis_rule_2_2_22
     - prelim_win16cis_is_domain_member
@@ -339,12 +339,12 @@
   ansible.windows.win_user_right:
     name: SeDenyNetworkLogonRight
     users:
-      - Guests
-      - Local Account
+      - S-1-5-32-546
+      - S-1-5-113
       - S-1-5-32-544
     action: add
 
-- name: "2.2.23 | PATCH | Ensure Deny log on as a batch job to include Guests"
+- name: "2.2.23 | PATCH | Ensure Deny log on as a batch job to include S-1-5-32-546"
   when: win16cis_rule_2_2_23
   tags:
     - level1-domaincontroller
@@ -355,10 +355,10 @@
   ansible.windows.win_user_right:
     name: SeDenyBatchLogonRight
     users:
-      - Guests
+      - S-1-5-32-546
     action: add
 
-- name: "2.2.24 | PATCH | Ensure Deny log on as a service to include Guests"
+- name: "2.2.24 | PATCH | Ensure Deny log on as a S-1-5-6 to include S-1-5-32-546"
   when: win16cis_rule_2_2_24
   tags:
     - level1-domaincontroller
@@ -367,12 +367,12 @@
     - patch
     - userrights
   ansible.windows.win_user_right:
-    name: SeDenyServiceLogonRight
+    name: SeDenyS-1-5-6LogonRight
     users:
-      - Guests
+      - S-1-5-32-546
     action: add
 
-- name: "2.2.25 | PATCH | Ensure Deny log on locally to include Guests"
+- name: "2.2.25 | PATCH | Ensure Deny log on locally to include S-1-5-32-546"
   when: win16cis_rule_2_2_25
   tags:
     - level1-domaincontroller
@@ -383,10 +383,10 @@
   ansible.windows.win_user_right:
     name: SeDenyInteractiveLogonRight
     users:
-      - Guests
+      - S-1-5-32-546
     action: add
 
-- name: "2.2.26 | PATCH | Ensure Deny log on through Remote Desktop Services to include Guests DC only | Domain Controller"
+- name: "2.2.26 | PATCH | Ensure Deny log on through Remote Desktop S-1-5-6s to include S-1-5-32-546 DC only | Domain Controller"
   when:
     - win16cis_rule_2_2_26
     - prelim_win16cis_is_domain_controller
@@ -399,10 +399,10 @@
   ansible.windows.win_user_right:
     name: SeDenyRemoteInteractiveLogonRight
     users:
-      - Guests
+      - S-1-5-32-546
     action: add
 
-- name: "2.2.27 | PATCH | Ensure Deny log on through Remote Desktop Services is set to Guests Local account MS only | Member Server"
+- name: "2.2.27 | PATCH | Ensure Deny log on through Remote Desktop S-1-5-6s is set to S-1-5-32-546 S-1-5-113 MS only | Member Server"
   when:
     - win16cis_rule_2_2_27
     - prelim_win16cis_is_domain_member
@@ -415,8 +415,8 @@
   ansible.windows.win_user_right:
     name: SeDenyRemoteInteractiveLogonRight
     users:
-      - Guests
-      - Local Account
+      - S-1-5-32-546
+      - S-1-5-113
     action: set
 
 - name: "2.2.28 | PATCH | Ensure Enable computer and user accounts to be trusted for delegation is set to S-1-5-32-544 DC only | Domain Controller"
@@ -463,7 +463,7 @@
       - S-1-5-32-544
     action: set
 
-- name: "2.2.31 | PATCH | Ensure Generate security audits is set to LOCAL SERVICE, NETWORK SERVICE"
+- name: "2.2.31 | PATCH | Ensure Generate security audits is set to S-1-5-19, S-1-5-20"
   when: win16cis_rule_2_2_31
   tags:
     - level1-domaincontroller
@@ -471,15 +471,15 @@
     - rule_2.2.31
     - patch
     - userrights
-    - services
+    - S-1-5-6s
   ansible.windows.win_user_right:
     name: SeAuditPrivilege
     users:
-      - LOCAL SERVICE
-      - NETWORK SERVICE
+      - S-1-5-19
+      - S-1-5-20
     action: set
 
-- name: "2.2.32 | PATCH | Ensure Impersonate a client after authentication is set to S-1-5-32-544 LOCAL SERVICE NETWORK SERVICE SERVICE DC only | Domain Controller"
+- name: "2.2.32 | PATCH | Ensure Impersonate a client after authentication is set to S-1-5-32-544 S-1-5-19 S-1-5-20 S-1-5-6 DC only | Domain Controller"
   when:
     - win16cis_rule_2_2_32
     - prelim_win16cis_is_domain_controller
@@ -488,18 +488,18 @@
     - rule_2.2.32
     - patch
     - userrights
-    - services
+    - S-1-5-6s
     - S-1-5-32-544
   ansible.windows.win_user_right:
     name: SeImpersonatePrivilege
     users:
       - S-1-5-32-544
-      - LOCAL SERVICE
-      - NETWORK SERVICE
-      - SERVICE
+      - S-1-5-19
+      - S-1-5-20
+      - S-1-5-6
     action: set
 
-- name: "2.2.33 | PATCH | Ensure Impersonate a client after authentication is set to S-1-5-32-544 LOCAL SERVICE, NETWORK SERVICE, SERVICE and when the Web Server IIS Role with Web Services Role Service is installed IIS IUSRS MS only"
+- name: "2.2.33 | PATCH | Ensure Impersonate a client after authentication is set to S-1-5-32-544 S-1-5-19, S-1-5-20, S-1-5-6 and when the Web Server IIS Role with Web S-1-5-6s Role S-1-5-6 is installed IIS IUSRS MS only"
   when:
     - win16cis_rule_2_2_33
     - prelim_win16cis_is_domain_member
@@ -509,29 +509,29 @@
     - patch
     - userrights
     - S-1-5-32-544
-    - services
+    - S-1-5-6s
   block:
-    - name: "2.2.33 | PATCH | Ensure Impersonate a client after authentication is set to S-1-5-32-544 LOCAL SERVICE, NETWORK SERVICE, SERVICE and when the Web Server IIS Role with Web Services Role Service is installed IIS IUSRS MS only"
-      when: not win16cis_iis_and_web_services_installed
+    - name: "2.2.33 | PATCH | Ensure Impersonate a client after authentication is set to S-1-5-32-544 S-1-5-19, S-1-5-20, S-1-5-6 and when the Web Server IIS Role with Web S-1-5-6s Role S-1-5-6 is installed IIS IUSRS MS only"
+      when: not win16cis_iis_and_web_S-1-5-6s_installed
       ansible.windows.win_user_right:
         name: SeImpersonatePrivilege
         users:
           - S-1-5-32-544
-          - LOCAL SERVICE
-          - NETWORK SERVICE
-          - SERVICE
+          - S-1-5-19
+          - S-1-5-20
+          - S-1-5-6
         action: set
 
-    - name: "2.2.33 | PATCH | Ensure Impersonate a client after authentication is set to S-1-5-32-544 LOCAL SERVICE, NETWORK SERVICE, SERVICE and when the Web Server IIS Role with Web Services Role Service is installed IIS IUSRS MS only"
-      when: win16cis_iis_and_web_services_installed
+    - name: "2.2.33 | PATCH | Ensure Impersonate a client after authentication is set to S-1-5-32-544 S-1-5-19, S-1-5-20, S-1-5-6 and when the Web Server IIS Role with Web S-1-5-6s Role S-1-5-6 is installed IIS IUSRS MS only"
+      when: win16cis_iis_and_web_S-1-5-6s_installed
       ansible.windows.win_user_right:
         name: SeImpersonatePrivilege
         users:
           - S-1-5-32-544
-          - IIS_IUSRS
-          - LOCAL SERVICE
-          - NETWORK SERVICE
-          - SERVICE
+          - S-1-5-32-568
+          - S-1-5-19
+          - S-1-5-20
+          - S-1-5-6
         action: set
 
 - name: "2.2.34 | PATCH | Ensure Increase scheduling priority is set to S-1-5-32-544 Window ManagerWindow Manager Group"
@@ -691,7 +691,7 @@
       - S-1-5-32-544
     action: set
 
-- name: "2.2.44 | PATCH | Ensure Profile system performance is set to S-1-5-32-544 NT SERVICE.WdiServiceHost"
+- name: "2.2.44 | PATCH | Ensure Profile system performance is set to S-1-5-32-544 NT S-1-5-6.WdiS-1-5-6Host"
   when: win16cis_rule_2_2_44
   tags:
     - level1-domaincontroller
@@ -700,15 +700,15 @@
     - patch
     - userrights
     - administrator
-    - service
+    - S-1-5-6
   ansible.windows.win_user_right:
     name: SeSystemProfilePrivilege
     users:
       - S-1-5-32-544
-      - NT SERVICE\WdiServiceHost
+      - S-1-5-80-*
     action: set
 
-- name: "2.2.45 | PATCH | Ensure Replace a process level token is set to LOCAL SERVICE NETWORK SERVICE"
+- name: "2.2.45 | PATCH | Ensure Replace a process level token is set to S-1-5-19 S-1-5-20"
   when: win16cis_rule_2_2_45
   tags:
     - level1-domaincontroller
@@ -716,12 +716,12 @@
     - rule_2.2.45
     - patch
     - userrights
-    - service
+    - S-1-5-6
   ansible.windows.win_user_right:
     name: SeAssignPrimaryTokenPrivilege
     users:
-      - LOCAL SERVICE
-      - NETWORK SERVICE
+      - S-1-5-19
+      - S-1-5-20
     action: set
 
 - name: "2.2.46 | PATCH | Ensure Restore files and directories is set to S-1-5-32-544"
@@ -754,7 +754,7 @@
       - S-1-5-32-544
     action: set
 
-- name: "2.2.48 | PATCH | Ensure Synchronize directory service data is set to No One DC only | Domain Controller"
+- name: "2.2.48 | PATCH | Ensure Synchronize directory S-1-5-6 data is set to No One DC only | Domain Controller"
   when:
     - win16cis_rule_2_2_48
     - prelim_win16cis_is_domain_controller
@@ -811,7 +811,7 @@
     key: EnableGuestAccount
     value: 0
 
-- name: "2.3.1.3 | PATCH | Ensure Accounts Limit local account use of blank passwords to console logon only is set to Enabled"
+- name: "2.3.1.3 | PATCH | Ensure Accounts Limit S-1-5-113 use of blank passwords to console logon only is set to Enabled"
   when: win16cis_rule_2_3_1_3
   tags:
     - level1-domaincontroller
@@ -924,7 +924,7 @@
     - patch
     - devices
   ansible.windows.win_regedit:
-    path: HKLM:\SYSTEM\Currentcontrolset\Control\Print\Providers\Lanman Print Services\Servers
+    path: HKLM:\SYSTEM\Currentcontrolset\Control\Print\Providers\Lanman Print S-1-5-6s\Servers
     name: AddPrinterDrivers
     data: 1
     type: dword
@@ -955,7 +955,7 @@
     - patch
     - logon
   ansible.windows.win_regedit:
-    path: HKLM:\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters
+    path: HKLM:\SYSTEM\CurrentControlSet\S-1-5-6s\Netlogon\Parameters
     name: VulnerableChannelAllowList
     data: 0
     type: dword
@@ -970,7 +970,7 @@
     - patch
     - ldap
   ansible.windows.win_regedit:
-    path: HKLM:\SYSTEM\CurrentControlSet\Services\NTDS\Parameters
+    path: HKLM:\SYSTEM\CurrentControlSet\S-1-5-6s\NTDS\Parameters
     name: LdapEnforceChannelBinding
     data: 2
     type: dword
@@ -985,7 +985,7 @@
     - patch
     - ldap
   ansible.windows.win_regedit:
-    path: HKLM:\SYSTEM\CurrentControlSet\Services\NTDS\Parameters
+    path: HKLM:\SYSTEM\CurrentControlSet\S-1-5-6s\NTDS\Parameters
     name: LDAPServerIntegrity
     data: 2
     type: dword
@@ -1000,7 +1000,7 @@
     - patch
     - account
   ansible.windows.win_regedit:
-    path: HKLM:\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters
+    path: HKLM:\SYSTEM\CurrentControlSet\S-1-5-6s\Netlogon\Parameters
     name: RefusePasswordChange
     data: 0
     type: dword
@@ -1018,7 +1018,7 @@
     - patch
     - encryption
   ansible.windows.win_regedit:
-    path: HKLM:\SYSTEM\Currentcontrolset\Services\Netlogon\Parameters
+    path: HKLM:\SYSTEM\Currentcontrolset\S-1-5-6s\Netlogon\Parameters
     name: RequireSignOrSeal
     data: 1
     type: dword
@@ -1036,7 +1036,7 @@
     - patch
     - encryption
   ansible.windows.win_regedit:
-    path: HKLM:\SYSTEM\Currentcontrolset\Services\Netlogon\Parameters
+    path: HKLM:\SYSTEM\Currentcontrolset\S-1-5-6s\Netlogon\Parameters
     name: SealSecureChannel
     data: 1
     type: dword
@@ -1053,7 +1053,7 @@
     - patch
     - logon
   ansible.windows.win_regedit:
-    path: HKLM:\SYSTEM\Currentcontrolset\Services\Netlogon\Parameters
+    path: HKLM:\SYSTEM\Currentcontrolset\S-1-5-6s\Netlogon\Parameters
     name: SignSecureChannel
     data: 1
     type: dword
@@ -1070,7 +1070,7 @@
     - patch
     - logon
   ansible.windows.win_regedit:
-    path: HKLM:\SYSTEM\Currentcontrolset\Services\Netlogon\Parameters
+    path: HKLM:\SYSTEM\Currentcontrolset\S-1-5-6s\Netlogon\Parameters
     name: DisablePasswordChange
     data: 0
     type: dword
@@ -1125,7 +1125,7 @@
     - patch
     - logon
   ansible.windows.win_regedit:
-    path: HKLM:\SYSTEM\Currentcontrolset\Services\Netlogon\Parameters
+    path: HKLM:\SYSTEM\Currentcontrolset\S-1-5-6s\Netlogon\Parameters
     name: RequireStrongKey
     data: 1
     type: dword
@@ -1353,7 +1353,7 @@
     - patch
     - logon
   ansible.windows.win_regedit:
-    path: HKLM:\SYSTEM\Currentcontrolset\Services\Lanmanworkstation\Parameters
+    path: HKLM:\SYSTEM\Currentcontrolset\S-1-5-6s\Lanmanworkstation\Parameters
     name: RequireSecuritySignature
     data: 1
     type: dword
@@ -1367,7 +1367,7 @@
     - patch
     - logon
   ansible.windows.win_regedit:
-    path: HKLM:\SYSTEM\Currentcontrolset\Services\Lanmanworkstation\Parameters
+    path: HKLM:\SYSTEM\Currentcontrolset\S-1-5-6s\Lanmanworkstation\Parameters
     name: EnableSecuritySignature
     data: 1
     type: dword
@@ -1381,7 +1381,7 @@
     - patch
     - encryption
   ansible.windows.win_regedit:
-    path: HKLM:\SYSTEM\Currentcontrolset\Services\Lanmanworkstation\Parameters
+    path: HKLM:\SYSTEM\Currentcontrolset\S-1-5-6s\Lanmanworkstation\Parameters
     name: EnablePlainTextPassword
     data: 0
     type: dword
@@ -1398,7 +1398,7 @@
     - name: "2.3.9.1 | PATCH | Ensure Microsoft network server Amount of idle time required before suspending session is set to 15 or fewer minutes. | Apply Settings To Registry."
       when: win16cis_smb_auto_disconnect_time <= 15
       ansible.windows.win_regedit:
-        path: HKLM:\SYSTEM\Currentcontrolset\Services\Lanmanserver\Parameters
+        path: HKLM:\SYSTEM\Currentcontrolset\S-1-5-6s\Lanmanserver\Parameters
         name: AutoDisconnect
         data: "{{ win16cis_smb_auto_disconnect_time }}"
         type: dword
@@ -1426,7 +1426,7 @@
     - patch
     - account
   ansible.windows.win_regedit:
-    path: HKLM:\SYSTEM\Currentcontrolset\Services\Lanmanserver\Parameters
+    path: HKLM:\SYSTEM\Currentcontrolset\S-1-5-6s\Lanmanserver\Parameters
     name: RequireSecuritySignature
     data: 1
     type: dword
@@ -1440,7 +1440,7 @@
     - patch
     - account
   ansible.windows.win_regedit:
-    path: HKLM:\SYSTEM\Currentcontrolset\Services\Lanmanserver\Parameters
+    path: HKLM:\SYSTEM\Currentcontrolset\S-1-5-6s\Lanmanserver\Parameters
     name: EnableSecuritySignature
     data: 1
     type: dword
@@ -1454,7 +1454,7 @@
     - patch
     - account
   ansible.windows.win_regedit:
-    path: HKLM:\SYSTEM\Currentcontrolset\Services\Lanmanserver\Parameters
+    path: HKLM:\SYSTEM\Currentcontrolset\S-1-5-6s\Lanmanserver\Parameters
     name: EnableForcedLogoff
     data: 1
     type: dword
@@ -1475,7 +1475,7 @@
         - win16cis_smb_server_name_hardening_level == 1 or
           win16cis_smb_server_name_hardening_level == 2
       ansible.windows.win_regedit:
-        path: HKLM:\SYSTEM\Currentcontrolset\Services\LanManServer\Parameters
+        path: HKLM:\SYSTEM\Currentcontrolset\S-1-5-6s\LanManServer\Parameters
         name: SMBServerNameHardeningLevel
         data: "{{ win16cis_smb_server_name_hardening_level }}"
         type: dword
@@ -1579,7 +1579,7 @@
     - patch
     - namedpipes
   ansible.windows.win_regedit:
-    path: HKLM:\SYSTEM\Currentcontrolset\Services\LanManServer\Parameters
+    path: HKLM:\SYSTEM\Currentcontrolset\S-1-5-6s\LanManServer\Parameters
     name: NullSessionPipes
     data: ['LSARPC', 'NETLOGON', 'SAMR']
     type: multistring
@@ -1594,7 +1594,7 @@
     - patch
     - namedpipes
   ansible.windows.win_regedit:
-    path: HKLM:\SYSTEM\Currentcontrolset\Services\LanManServer\Parameters
+    path: HKLM:\SYSTEM\Currentcontrolset\S-1-5-6s\LanManServer\Parameters
     name: NullSessionPipes
     data: ""
     type: multistring
@@ -1628,7 +1628,7 @@
       ansible.builtin.set_fact:
         rule_2_3_10_9_remote_registry_paths: [
           'SYSTEM\CurrentControlSet\Control\Print\Printers',
-          'SYSTEM\CurrentControlSet\Services\Eventlog',
+          'SYSTEM\CurrentControlSet\S-1-5-6s\Eventlog',
           'SOFTWARE\Microsoft\OLAP Server',
           'SOFTWARE\Microsoft\Windows NT\CurrentVersion\Print',
           'SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows',
@@ -1637,10 +1637,10 @@
           'SYSTEM\CurrentControlSet\Control\Terminal Server\UserConfig',
           'SYSTEM\CurrentControlSet\Control\Terminal Server\DefaultUserConfiguration',
           'SOFTWARE\Microsoft\Windows NT\CurrentVersion\Perflib',
-          'SYSTEM\CurrentControlSet\Services\SysmonLog'
+          'SYSTEM\CurrentControlSet\S-1-5-6s\SysmonLog'
         ]
 
-    - name: "2.3.10.9 | AUDIT | Configure Network access Remotely accessible registry paths and sub-paths | Check if AD Certificate Services feature is installed."
+    - name: "2.3.10.9 | AUDIT | Configure Network access Remotely accessible registry paths and sub-paths | Check if AD Certificate S-1-5-6s feature is installed."
       community.windows.win_feature_info:
         name: AD-Certificate
       register: rule_2_3_10_9_adcs_feature
@@ -1648,7 +1648,7 @@
     - name: "2.3.10.9 | AUDIT | Configure Network access Remotely accessible registry paths and sub-paths | Add CertSvc to paths."
       when: rule_2_3_10_9_adcs_feature.features[0].installed
       ansible.builtin.set_fact:
-        rule_2_3_10_9_remote_registry_paths: "{{ rule_2_3_10_9_remote_registry_paths + ['SYSTEM\\CurrentControlSet\\Services\\CertSvc'] }}"
+        rule_2_3_10_9_remote_registry_paths: "{{ rule_2_3_10_9_remote_registry_paths + ['SYSTEM\\CurrentControlSet\\S-1-5-6s\\CertSvc'] }}"
 
     - name: "2.3.10.9 | AUDIT | Check if WINS feature is installed."
       community.windows.win_feature_info:
@@ -1658,7 +1658,7 @@
     - name: "2.3.10.9 | AUDIT | Configure Network access Remotely accessible registry paths and sub-paths | Add WINS to paths."
       when: rule_2_3_10_9_wins_feature.features[0].installed
       ansible.builtin.set_fact:
-        rule_2_3_10_9_remote_registry_paths: "{{ rule_2_3_10_9_remote_registry_paths + ['SYSTEM\\CurrentControlSet\\Services\\WINS'] }}"
+        rule_2_3_10_9_remote_registry_paths: "{{ rule_2_3_10_9_remote_registry_paths + ['SYSTEM\\CurrentControlSet\\S-1-5-6s\\WINS'] }}"
 
     - name: "2.3.10.9 | PATCH | Configure Network access Remotely accessible registry paths and sub-paths | Apply Settings"
       ansible.windows.win_regedit:
@@ -1676,7 +1676,7 @@
     - patch
     - namedpipes
   ansible.windows.win_regedit:
-    path: HKLM:\SYSTEM\Currentcontrolset\Services\Lanmanserver\Parameters
+    path: HKLM:\SYSTEM\Currentcontrolset\S-1-5-6s\Lanmanserver\Parameters
     name: RestrictNullSessAccess
     data: 1
     type: dword
@@ -1705,12 +1705,12 @@
     - patch
     - shares
   ansible.windows.win_regedit:
-    path: HKLM:\SYSTEM\Currentcontrolset\Services\Lanmanserver\Parameters
+    path: HKLM:\SYSTEM\Currentcontrolset\S-1-5-6s\Lanmanserver\Parameters
     name: NullSessionShares
     data: ""
     type: multistring
 
-- name: "2.3.10.13 | PATCH | Ensure Network access Sharing and security model for local accounts is set to Classic - local users authenticate as themselves"
+- name: "2.3.10.13 | PATCH | Ensure Network access Sharing and security model for S-1-5-113s is set to Classic - local users authenticate as themselves"
   when: win16cis_rule_2_3_10_13
   tags:
     - level1-domaincontroller
@@ -1814,7 +1814,7 @@
     - patch
     - network
   ansible.windows.win_regedit:
-    path: HKLM:\SYSTEM\CurrentControlSet\Services\LanManServer\Parameters
+    path: HKLM:\SYSTEM\CurrentControlSet\S-1-5-6s\LanManServer\Parameters
     name: EnableForcedLogOff
     data: 1
     type: dword
@@ -1847,7 +1847,7 @@
         - win16cis_ldap_client_integrity == 1 or
           win16cis_ldap_client_integrity == 2
       ansible.windows.win_regedit:
-        path: HKLM:\SYSTEM\Currentcontrolset\Services\Ldap
+        path: HKLM:\SYSTEM\Currentcontrolset\S-1-5-6s\Ldap
         name: LDAPClientIntegrity
         data: "{{ win16cis_ldap_client_integrity }}"
         type: dword
@@ -1922,7 +1922,7 @@
     - patch
     - ntlm
   ansible.windows.win_regedit:
-    path: HKLM:\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters
+    path: HKLM:\SYSTEM\CurrentControlSet\S-1-5-6s\Netlogon\Parameters
     name: AuditNTLMInDomain
     data: 7
     type: dword
