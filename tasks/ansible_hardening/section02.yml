@@ -544,7 +544,9 @@
     - userrights
   ansible.windows.win_user_right:
     name: SeIncreaseBasePriorityPrivilege
-    users: "{{ win16cis_increase_scheduling_priority_users }}"
+    users:
+      - S-1-5-32-544
+      - S-1-5-90-0
     action: set
 
 - name: "2.2.35 | PATCH | Ensure Load and unload device drivers is set to Administrators"
