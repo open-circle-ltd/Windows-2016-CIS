@@ -512,7 +512,7 @@
     - Services
   block:
     - name: "2.2.33 | PATCH | Ensure Impersonate a client after authentication is set to Administrators LOCAL SERVICE, NETWORK SERVICE, Service and when the Web Server IIS Role with Web Services Role Service is installed IIS IUSRS MS only"
-      when: not win16cis_iis_and_web_Services_installed
+      when: not win16cis_iis_and_web_services_installed
       ansible.windows.win_user_right:
         name: SeImpersonatePrivilege
         users:
@@ -523,7 +523,7 @@
         action: set
 
     - name: "2.2.33 | PATCH | Ensure Impersonate a client after authentication is set to Administrators LOCAL SERVICE, NETWORK SERVICE, Service and when the Web Server IIS Role with Web Services Role Service is installed IIS IUSRS MS only"
-      when: win16cis_iis_and_web_Services_installed
+      when: win16cis_iis_and_web_services_installed
       ansible.windows.win_user_right:
         name: SeImpersonatePrivilege
         users:
