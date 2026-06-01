@@ -1643,7 +1643,7 @@
         ]
 
     - name: "2.3.10.9 | AUDIT | Configure Network access Remotely accessible registry paths and sub-paths | Check if AD Certificate Services feature is installed."
-      community.windows.win_feature_info:
+      ansible.windows.win_feature_info:
         name: AD-Certificate
       register: rule_2_3_10_9_adcs_feature
 
@@ -1653,7 +1653,7 @@
         rule_2_3_10_9_remote_registry_paths: "{{ rule_2_3_10_9_remote_registry_paths + ['SYSTEM\\CurrentControlSet\\Services\\CertSvc'] }}"
 
     - name: "2.3.10.9 | AUDIT | Check if WINS feature is installed."
-      community.windows.win_feature_info:
+      ansible.windows.win_feature_info:
         name: WINS
       register: rule_2_3_10_9_wins_feature
 
