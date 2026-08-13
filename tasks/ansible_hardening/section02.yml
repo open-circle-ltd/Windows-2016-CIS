@@ -324,7 +324,7 @@
   ansible.windows.win_user_right:
     name: SeDenyNetworkLogonRight
     users:
-      - Guests
+      - S-1-5-32-546
     action: add
 
 - name: "2.2.22 | PATCH | Ensure Deny access to this computer from the network to include Guests Local account and member of Administrators group MS only | Member Server"
@@ -339,7 +339,7 @@
   ansible.windows.win_user_right:
     name: SeDenyNetworkLogonRight
     users:
-      - Guests
+      - S-1-5-32-546
       - Local Account
       - S-1-5-32-544
     action: add
@@ -355,7 +355,7 @@
   ansible.windows.win_user_right:
     name: SeDenyBatchLogonRight
     users:
-      - Guests
+      - S-1-5-32-546
     action: add
 
 - name: "2.2.24 | PATCH | Ensure Deny log on as a service to include Guests"
@@ -369,7 +369,7 @@
   ansible.windows.win_user_right:
     name: SeDenyServiceLogonRight
     users:
-      - Guests
+      - S-1-5-32-546
     action: add
 
 - name: "2.2.25 | PATCH | Ensure Deny log on locally to include Guests"
@@ -383,7 +383,7 @@
   ansible.windows.win_user_right:
     name: SeDenyInteractiveLogonRight
     users:
-      - Guests
+      - S-1-5-32-546
     action: add
 
 - name: "2.2.26 | PATCH | Ensure Deny log on through Remote Desktop Services to include Guests DC only | Domain Controller"
@@ -399,7 +399,7 @@
   ansible.windows.win_user_right:
     name: SeDenyRemoteInteractiveLogonRight
     users:
-      - Guests
+      - S-1-5-32-546
     action: add
 
 - name: "2.2.27 | PATCH | Ensure Deny log on through Remote Desktop Services is set to Guests Local account MS only | Member Server"
@@ -415,7 +415,7 @@
   ansible.windows.win_user_right:
     name: SeDenyRemoteInteractiveLogonRight
     users:
-      - Guests
+      - S-1-5-32-546
       - Local Account
     action: set
 
