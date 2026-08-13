@@ -25,7 +25,7 @@
   ansible.windows.win_user_right:
     name: SeNetworkLogonRight
     users:
-      - Administrators
+      - S-1-5-32-544
       - Authenticated Users
       - ENTERPRISE DOMAIN CONTROLLERS
     action: set
@@ -42,7 +42,7 @@
   ansible.windows.win_user_right:
     name: SeNetworkLogonRight
     users:
-      - Administrators
+      - S-1-5-32-544
       - Authenticated Users
     action: set
 
@@ -70,7 +70,7 @@
     - userrights
   ansible.windows.win_user_right:
     name: SeMachineAccountPrivilege
-    users: Administrators
+    users: S-1-5-32-544
     action: set
 
 - name: "2.2.6 | PATCH | Ensure Adjust memory quotas for a process is set to Administrators LOCAL SERVICE NETWORK SERVICE"
@@ -84,7 +84,7 @@
   ansible.windows.win_user_right:
     name: SeIncreaseQuotaPrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
       - LOCAL SERVICE
       - NETWORK SERVICE
     action: set
@@ -101,7 +101,7 @@
   ansible.windows.win_user_right:
     name: SeInteractiveLogonRight
     users:
-      - Administrators
+      - S-1-5-32-544
       - ENTERPRISE DOMAIN CONTROLLERS
     action: set
 
@@ -117,7 +117,7 @@
   ansible.windows.win_user_right:
     name: SeInteractiveLogonRight
     users:
-      - Administrators
+      - S-1-5-32-544
     action: set
 
 - name: "2.2.9 | PATCH | Ensure 'Allow log on through Remote Desktop Services' is set to 'Administrators' (DC only)"
@@ -133,7 +133,7 @@
   ansible.windows.win_user_right:
     name: SeRemoteInteractiveLogonRight
     users:
-      - Administrators
+      - S-1-5-32-544
     action: set
 
 - name: "2.2.10 | PATCH | Ensure 'Allow log on through Remote Desktop Services' is set to 'Administrators, Remote Desktop Users' (MS Only)"
@@ -149,7 +149,7 @@
   ansible.windows.win_user_right:
     name: SeRemoteInteractiveLogonRight
     users:
-      - Administrators
+      - S-1-5-32-544
       - Remote Desktop Users
     action: set
 
@@ -166,7 +166,7 @@
   ansible.windows.win_user_right:
     name: SeBackupPrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
     action: set
 
 - name: "2.2.12 | PATCH | Ensure Change the system time is set to Administrators LOCAL SERVICE"
@@ -179,7 +179,7 @@
   ansible.windows.win_user_right:
     name: SeSystemTimePrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
       - LOCAL SERVICE
     action: set
 
@@ -194,7 +194,7 @@
   ansible.windows.win_user_right:
     name: SeTimeZonePrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
       - LOCAL SERVICE
     action: set
 
@@ -209,7 +209,7 @@
   ansible.windows.win_user_right:
     name: SeCreatePagefilePrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
     action: set
 
 - name: "2.2.15 | PATCH | Ensure Create a token object is set to No One"
@@ -236,7 +236,7 @@
   ansible.windows.win_user_right:
     name: SeCreateGlobalPrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
       - LOCAL SERVICE
       - NETWORK SERVICE
       - SERVICE
@@ -267,7 +267,7 @@
   ansible.windows.win_user_right:
     name: SeCreateSymbolicLinkPrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
     action: set
 
 - name: "2.2.19 | PATCH | Ensure Create symbolic links is set to Administrators NT VIRTUAL MACHINE-Virtual Machines MS only | Member Server"
@@ -285,7 +285,7 @@
       ansible.windows.win_user_right:
         name: SeCreateSymbolicLinkPrivilege
         users:
-          - Administrators
+          - S-1-5-32-544
         action: set
 
     - name: "2.2.19 | PATCH | Ensure Create symbolic links is set to Administrators NT VIRTUAL MACHINE-Virtual Machines MS only | With Hyper-v | Member Server"
@@ -293,7 +293,7 @@
       ansible.windows.win_user_right:
         name: SeCreateSymbolicLinkPrivilege
         users:
-          - Administrators
+          - S-1-5-32-544
           - NT VIRTUAL MACHINE\Virtual Machines
         action: set
 
@@ -308,7 +308,7 @@
   ansible.windows.win_user_right:
     name: SeDebugPrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
     action: set
 
 - name: "2.2.21 | PATCH | Ensure Deny access to this computer from the network to include Guests DC only | Domain Controller"
@@ -341,7 +341,7 @@
     users:
       - Guests
       - Local Account
-      - Administrators
+      - S-1-5-32-544
     action: add
 
 - name: "2.2.23 | PATCH | Ensure Deny log on as a batch job to include Guests"
@@ -428,10 +428,10 @@
     - rule_2.2.28
     - patch
     - userrights
-    - administrators
+    - S-1-5-32-544
   ansible.windows.win_user_right:
     name: SeEnableDelegationPrivilege
-    users: Administrators
+    users: S-1-5-32-544
     action: set
 
 - name: "2.2.29 | PATCH | Ensure Enable computer and user accounts to be trusted for delegation is set to No One MS only | Member Server"
@@ -456,11 +456,11 @@
     - rule_2.2.30
     - patch
     - userrights
-    - administrators
+    - S-1-5-32-544
   ansible.windows.win_user_right:
     name: SeRemoteShutdownPrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
     action: set
 
 - name: "2.2.31 | PATCH | Ensure Generate security audits is set to LOCAL SERVICE, NETWORK SERVICE"
@@ -489,11 +489,11 @@
     - patch
     - userrights
     - services
-    - administrators
+    - S-1-5-32-544
   ansible.windows.win_user_right:
     name: SeImpersonatePrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
       - LOCAL SERVICE
       - NETWORK SERVICE
       - SERVICE
@@ -508,7 +508,7 @@
     - rule_2.2.33
     - patch
     - userrights
-    - administrators
+    - S-1-5-32-544
     - services
   block:
     - name: "2.2.33 | PATCH | Ensure Impersonate a client after authentication is set to Administrators LOCAL SERVICE, NETWORK SERVICE, SERVICE and when the Web Server IIS Role with Web Services Role Service is installed IIS IUSRS MS only"
@@ -516,7 +516,7 @@
       ansible.windows.win_user_right:
         name: SeImpersonatePrivilege
         users:
-          - Administrators
+          - S-1-5-32-544
           - LOCAL SERVICE
           - NETWORK SERVICE
           - SERVICE
@@ -527,7 +527,7 @@
       ansible.windows.win_user_right:
         name: SeImpersonatePrivilege
         users:
-          - Administrators
+          - S-1-5-32-544
           - IIS_IUSRS
           - LOCAL SERVICE
           - NETWORK SERVICE
@@ -558,7 +558,7 @@
   ansible.windows.win_user_right:
     name: SeLoadDriverPrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
     action: set
 
 - name: "2.2.36 | PATCH | Ensure Lock pages in memory is set to No One"
@@ -583,10 +583,10 @@
     - rule_2.2.37
     - patch
     - userrights
-    - administrators
+    - S-1-5-32-544
   ansible.windows.win_user_right:
     name: SeBatchLogonRight
-    users: Administrators
+    users: S-1-5-32-544
     action: set
 
 - name: "2.2.38 | PATCH | Ensure Manage auditing and security log is set to Administrators and when Exchange is running in the environment Exchange Servers DC only | Domain Controller"
@@ -598,14 +598,14 @@
     - rule_2.2.38
     - patch
     - userrights
-    - administrators
+    - S-1-5-32-544
   block:
     - name: "2.2.38 | PATCH | Ensure Manage auditing and security log is set to Administrators and when Exchange is running in the environment Exchange Servers DC only | Set Non-Exchange Server Groups | Domain Controller"
       when: not win16cis_exchange_server_running
       ansible.windows.win_user_right:
         name: SeSecurityPrivilege
         users:
-          - Administrators
+          - S-1-5-32-544
         action: set
 
     - name: "2.2.38 | PATCH | Ensure Manage auditing and security log is set to Administrators and when Exchange is running in the environment Exchange Servers DC only | Set Exchange Server Groups | Domain Controller"
@@ -613,7 +613,7 @@
       ansible.windows.win_user_right:
         name: SeSecurityPrivilege
         users:
-          - Administrators
+          - S-1-5-32-544
           - Exchange Servers
         action: set
 
@@ -626,11 +626,11 @@
     - rule_2.2.39
     - patch
     - userrights
-    - administrators
+    - S-1-5-32-544
   ansible.windows.win_user_right:
     name: SeSecurityPrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
     action: set
 
 - name: "2.2.40 | PATCH | Ensure Modify an object label is set to No One"
@@ -654,11 +654,11 @@
     - rule_2.2.41
     - patch
     - userrights
-    - administrators
+    - S-1-5-32-544
   ansible.windows.win_user_right:
     name: SeSystemEnvironmentPrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
     action: set
 
 - name: "2.2.42 | PATCH | Ensure Perform volume maintenance tasks is set to Administrators"
@@ -669,11 +669,11 @@
     - rule_2.2.42
     - patch
     - userrights
-    - administrators
+    - S-1-5-32-544
   ansible.windows.win_user_right:
     name: SeManageVolumePrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
     action: set
 
 - name: "2.2.43 | PATCH | Ensure Profile single process is set to Administrators"
@@ -684,11 +684,11 @@
     - rule_2.2.43
     - patch
     - userrights
-    - administrators
+    - S-1-5-32-544
   ansible.windows.win_user_right:
     name: SeProfileSingleProcessPrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
     action: set
 
 - name: "2.2.44 | PATCH | Ensure Profile system performance is set to Administrators NT SERVICE.WdiServiceHost"
@@ -704,7 +704,7 @@
   ansible.windows.win_user_right:
     name: SeSystemProfilePrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
       - NT SERVICE\WdiServiceHost
     action: set
 
@@ -736,7 +736,7 @@
   ansible.windows.win_user_right:
     name: SeRestorePrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
     action: set
 
 - name: "2.2.47 | PATCH | Ensure Shut down the system is set to Administrators"
@@ -751,7 +751,7 @@
   ansible.windows.win_user_right:
     name: SeShutdownPrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
     action: set
 
 - name: "2.2.48 | PATCH | Ensure Synchronize directory service data is set to No One DC only | Domain Controller"
@@ -780,7 +780,7 @@
   ansible.windows.win_user_right:
     name: SeTakeOwnershipPrivilege
     users:
-      - Administrators
+      - S-1-5-32-544
     action: set
 
 - name: "2.3.1.1 | PATCH | Ensure Accounts Block Microsoft accounts is set to Users can not add or log on with Microsoft accounts"
