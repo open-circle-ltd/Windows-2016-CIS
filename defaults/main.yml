@@ -665,7 +665,7 @@ win16cis_iis_and_web_services_installed: false
 # Window Manager\Window Manager Group only exists on non-Core installations
 # prelim_windows_installation_type should be 'Server Core' for Core installations
 # This is a variable to determine if Windows Manager should be included in this step
-win16cis_increase_scheduling_priority_users: '{{ ["Administrators"] if (prelim_windows_installation_type == "Server Core") else (["Administrators", "Window Manager\Window Manager Group"]) }}'
+win16cis_increase_scheduling_priority_users: '{{ ["S-1-5-32-544"] if (prelim_windows_installation_type == "Server Core") else (["S-1-5-32-544", "Window Manager\Window Manager Group"]) }}'
 
 # 2.2.38
 # win16cis_exchange_server_running is the policy setting that determines which users can change the auditing options for
